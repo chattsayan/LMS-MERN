@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const { openSignIn } = useClerk();
   const { user } = useUser();
-  const { navigate } = useContext(AppContext);
+  const { navigate, isInstructor } = useContext(AppContext);
 
   return (
     <div
@@ -26,8 +26,14 @@ const Navbar = () => {
         <div className="flex items-center gap-5">
           {user && (
             <>
-              <button>Become Instructor</button> |{" "}
-              <Link to="/my-learnings">My Learnings</Link>
+              <button
+                onClick={() => {
+                  navigate("/educator");
+                }}
+              >
+                {isInstructor ? "Instructor Dashboard" : "Become Instructor"}
+              </button>{" "}
+              | <Link to="/my-learnings">My Learnings</Link>
             </>
           )}
         </div>
@@ -49,8 +55,10 @@ const Navbar = () => {
         <div className="flex items-center gap-1 sm:gap-2 max-sm:text-xs">
           {user && (
             <>
-              <button>Become Instructor</button> |{" "}
-              <Link to="/my-learnings">My Learnings</Link>
+              <button>
+                {isInstructor ? "Instructor Dashboard" : "Become Instructor"}
+              </button>{" "}
+              | <Link to="/my-learnings">My Learnings</Link>
             </>
           )}
         </div>

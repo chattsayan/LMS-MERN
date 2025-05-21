@@ -6,6 +6,7 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [allCourses, setAllCourses] = useState([]);
+  const [isInstructor, setIsInstructor] = useState(true);
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
 
@@ -30,7 +31,14 @@ export const AppContextProvider = ({ children }) => {
     fetchAllCourses();
   }, []);
 
-  const value = { currency, allCourses, navigate, calculateAvgRating };
+  const value = {
+    currency,
+    allCourses,
+    navigate,
+    calculateAvgRating,
+    isInstructor,
+    setIsInstructor,
+  };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
